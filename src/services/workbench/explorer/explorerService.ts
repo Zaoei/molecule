@@ -228,6 +228,12 @@ export class ExplorerService
         });
     }
 
+    public setExpandedPanels(expandedPanels) {
+        this.setState({
+            expandedPanels,
+        });
+    }
+
     public removePanel(id: UniqueId) {
         const { data } = this.state;
         const next = [...data!];

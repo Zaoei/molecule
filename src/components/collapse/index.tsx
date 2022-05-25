@@ -60,6 +60,7 @@ export const HEADER_HEIGTH = 26;
 
 export function Collapse({
     data = [],
+    activePanelKeys: controlActivePanelKeys = [],
     className,
     title,
     style,
@@ -69,7 +70,9 @@ export function Collapse({
     onResize,
     ...restProps
 }: ICollapseProps) {
-    const [activePanelKeys, setActivePanelKeys] = useState<React.Key[]>([]);
+    const [activePanelKeys, setActivePanelKeys] = useState<React.Key[]>(
+        controlActivePanelKeys
+    );
     const [collapsing, setCollapsing] = useState(false);
     const wrapper = useRef<HTMLDivElement>(null);
     const [sizes, setSizes] = useState<number[]>(
@@ -240,6 +243,10 @@ export function Collapse({
 
         first.current = false;
     }, [activePanelKeys, data]);
+
+    useLayoutEffect(() => {
+        setActivePanelKeys(controlActivePanelKeys);
+    }, [controlActivePanelKeys]);
 
     // perform the next resizes value via sizes
     // the effects of data changes will lead to perform recalculate sizes, which cause recalculate the resizers

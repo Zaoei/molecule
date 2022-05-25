@@ -14,6 +14,7 @@ export const Explorer: React.FunctionComponent<IExplorerProps> = (
 ) => {
     const {
         data = [],
+        expandedPanels,
         headerToolBar,
         onClick,
         onActionsContextMenuClick,
@@ -35,6 +36,7 @@ export const Explorer: React.FunctionComponent<IExplorerProps> = (
             <Content>
                 <Collapse
                     data={data}
+                    defaultActivePanelKeys={expandedPanels}
                     onCollapseChange={onCollapseChange}
                     onToolbarClick={onToolbarClick}
                 />
